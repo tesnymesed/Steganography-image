@@ -1,0 +1,333 @@
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .main{
+            min-height: 100%;
+        }
+
+        /*#cover {
+            border: 1px black solid;
+            width: 500px;
+            height: 650px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #cover {
+            float: left;
+        }*/
+
+        header {
+            margin: 0;
+            padding: 0;
+            background-image: url(../static/img/hack1.jpg);
+            height: 95vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        header .row .icon{
+            margin: 0;
+            padding: 0;
+            height: 40px;
+            width: 57px;
+            position: absolute;
+            top: 15px;
+            left: 70px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 20%;
+            box-sizing: border-box;
+        }
+        header .row .icon img{
+            margin: 0;
+            padding: 5px 7px 5px 9px;
+            width: 40px;
+            height: 30px;
+        }
+
+        .main-nav {
+            list-style: none;
+            float: right;
+            display: flex;
+            margin-top: 0;
+            margin-right: 30px;
+            height: 100%;
+            padding: 0;
+        }
+        .main-nav li {
+            display: inline-block;
+            height: 100%;
+            padding: 5px;
+        }
+
+        .main-nav li a {
+            color: white;
+            text-decoration: none;
+            font-family: "Roboto", sans-serif;
+            padding: 20px 10px 17px 20px;
+            font-size: 18px;
+            transition: all 0.2s ease-in;
+            height: 100%;
+            width: 100%;
+        }
+
+        .main-nav li a:hover {
+            color: #1ed11e;
+            font-size: 19px;
+            border-bottom: 5px #1ed11e solid ;
+        }
+
+        .row {
+            width: 100%;
+            height: auto;
+            color: aqua;
+            position: fixed;
+            margin: 0;
+            padding-top: 20px;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            background: rgb(18, 33, 18);
+            z-index: 999;
+        }
+
+        .hero {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            width: 40%;
+            /*transform: translate(-50%,-50%);*/
+            top : 60%;
+            right: 50px;
+        }
+
+        h1 {
+            padding: 0;
+            margin: 0;
+            color: white;
+            text-transform: uppercase;
+            font-size: 3vw;
+            text-align: center;
+        }
+
+        .btn {
+            margin: 0px;
+            /*padding-top: 20px;*/
+            padding-right:0; 
+            position: absolute;
+            top: 65vh;
+            right: 50px;
+            /*margin-top: 30px;*/
+            width: auto;
+            height: auto;
+        }
+
+        .btn a {
+            text-decoration: none;
+            color: white;
+            font-size: 2vw;
+            border: 2px white solid;
+            padding: 10px 40px;
+            text-transform: uppercase;
+            margin-right: 8vw;
+        }
+
+        .btn a:hover {
+            background-color: #00b300;
+            transition: all 0.2s ease-in;
+        }
+
+        img {
+            display: block;
+        }
+
+        main{
+            position: relative;
+        }
+   
+        
+        .btn{
+            margin: 100px;
+        }
+        main .paragraphe{
+            position: relative;
+            margin-top: 5%; 
+            margin-bottom: 7%;
+            color: white;
+            background: rgba(7, 10, 6, 0.8);
+            box-sizing: border-box;
+            padding: 5% 0 7% 0;
+            width: 100%;
+            height: auto;
+            box-shadow: 0 0 10px black; 
+        }
+        main .paragraphe h3{
+            margin-top: 0; 
+            font-size: 2.5em;
+            text-align: center;
+        }
+        main .paragraphe p{
+            width:50%;
+            transform: translate(-50%,0%);
+            margin-left: 50%;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        
+        section.form-class #form{
+            min-height: 500px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            
+        }
+        section.form-class #form .methode fieldset{
+            display: flex;
+            justify-content:center;
+            border: none;
+            border-bottom: 5px solid green;
+        }
+        section.form-class #form .methode fieldset .radio-class{
+            padding-top: 15px;
+            font-size: 18px;
+            width: 300px;
+            margin-left: 0;
+            /*border: 5px solid rgb(3, 51, 3);*/
+            padding-bottom: 15px;
+        }
+        section.form-class #form .methode fieldset .radio-canal input{
+            margin-left: 50px;
+        }
+
+        section.form-class #form .methode fieldset #methode2-bit{
+            margin: 0 100px 0 100px;
+        }
+        textarea {
+            resize: none;
+            background-color: rgb(115, 218, 112);
+        }
+        section.form-class .form-input{
+            display: inline-block;
+            margin: 2%;
+            width: 300px;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .in-out-img{
+            width: 100%;
+            height: 100%;
+            background: rgb(255, 255, 255);
+            overflow: hidden;
+            border: 10px rgba(63, 62, 62, 0.699) solid;
+            position: relative;
+        }
+        .in-out-img img{
+            width: 100%;
+            height: 100%;
+            
+        }
+        .in-out-img img#cover-default , .in-out-img img#img-stego-default {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70%;
+            height: 70%;
+            transform: translate(-50%,-50%);
+            opacity: 40%;
+        }
+        #form .button{
+            font-size: 20px;
+            margin: 20px;
+        }
+        section.form-class .evaluation{
+            height: 200px;
+            width: 400px;
+            transform: translate(-50%,-50%);
+            margin-top: 200px;
+            margin-left: 50%;
+            background-color: rgb(255, 255, 255);
+            color: black;
+            border: 5px rgb(42, 175, 38) solid;
+        }
+        #form .methode{
+        flex-basis: 100%;
+        height: 90px;
+        }
+        #form .methode .methode fieldset{
+            position: absolute;
+            height: 100%;
+        }
+        section.form-class #form #methode2-bit{
+            width: 20%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        section.form-class #form #methode2-bit input{
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            background-color: inherit;
+            padding-top: 20px;
+            font-size: 14px;
+            color: white;
+        }
+        /* Chrome, Safari, Edge, Opera */
+        section.form-class #form #methode2-bit input::-webkit-outer-spin-button,
+        section.form-class #form #methode2-bit input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+        -moz-appearance: textfield;
+        }
+        section.form-class #form #methode2-bit label{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-bottom: 3px solid inherit;
+            color: rgb(255, 255, 255);
+        }
+        section.form-class #form #methode2-bit label::after{
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-bottom: 3px solid #1ed11e;
+            transform: translateX(-100%);
+            transition: all 0.3s ease;
+        }
+        section.form-class #form #methode2-bit label span{
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            color: rgb(134, 143, 134);
+            transition: all 0.9s ease;
+        }
+
+        section.form-class #form #methode2-bit input:focus + label span,
+        section.form-class #form #methode2-bit input:valid + label span {
+            transform: translateY(-15px);
+            transition: all 0.3s ease;
+            color: #17bd17;
+        }
+
+        section.form-class #form #methode2-bit input:focus + label::after,
+        section.form-class #form #methode2-bit input:valid + label::after{
+            transform: translateX(0px);
+            transition: all 0.6s ease;
+        }
+        

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename='extraction.css') }}">
+{% endblock %}
+
+{% block hero %}
+    <div class="hero">
+        <h1>Extraction</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+<main>
+
+<section class="form-class paragraphe">
+    <form id="form" method=post enctype=multipart/form-data>
+        <div class="methode">
+            <fieldset>
+                <legend>Réglage</legend>
+                <div class="radio-methode radio-class">
+                    <input type="radio" name="methode" id="premiere" value="1" onclick="document.getElementById('input-bit').disabled = true">
+                    <label for="premiere">JPEG-JSTEG</label>
+                    <input type="radio" name="methode" id="deux" value="2" onclick="document.getElementById('input-bit').disabled = false">
+                    <label for="deux">Méthode Proposé</label>
+                </div>
+                
+                <span id="methode2-bit">
+
+                    <input type="number" id="input-bit" name="methode2-bit" value="" required disabled>
+                    <label for="input-bit">
+                        <span>Clé d'insertion</span>
+                    </label>
+
+                </span>
+                <div class="canal">
+                    <div class="radio-canal radio-class">
+                        <input type="radio" name="canal" id="Y" value="0">
+                        <label for="Y">Y</label>
+                        <input type="radio" name="canal" id="Cb" value="1">
+                        <label for="Cb">Cb</label>
+                        <input type="radio" name="canal" id="Cr" value="2">
+                        <label for="Cr">Cr</label>
+                    </div>
+                </div>
+                
+            </fieldset>
+            
+        </div>
+        <div class="bloc-image-cover form-input">
+
+            <div class="coverClass in-out-img">
+            
+            </div>
+            <input type=file name=file id="file" class="button"
+            onchange="preview(event)">
+            
+        </div>   
+        <div class="arrow">
+            <img src="../static/img/trajectory.png" alt="">
+        </div>       
+        <div class="secret-message">
+
+        </div>
+    </form>
+</section>
+</main>
+{% endblock %}

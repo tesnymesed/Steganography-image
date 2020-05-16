@@ -1,0 +1,1 @@
+un petit point parmi les quelques millions qui constituent l’image. Et en fin en assemblant quelques millions de pixels, on obtient une image.

@@ -1,0 +1,113 @@
+
+{% extends 'base.html' %}
+
+{% block hero %}
+    <div class="hero">
+        <h1>Dissimulation</h1>
+    </div>
+{% endblock %}
+    
+{% block content %}
+    <main>
+        <section class="paragraphe">
+            <h3>what is stegano graphie</h3>
+            <p>
+                La stéganographie à pour but précis de cacher au sein 
+                d’un message primaire, un message secondaire .
+                Bien entendu il faut que le message primaire soit
+                lisible par tout le monde , et qu’il reste 
+                visuellement inchangé par rapport à ce qu’il était 
+                avant introduction du message secondaire.
+                Le message secondaire se doit d’être parfaitement invisible,
+                mais uniquement accessible par des personnes propriétaires
+                d’une information secrète, une "clef" par exemple qui permettrait
+                son extraction.s Le message peut être texte, image, son, video, … . 
+            </p>
+        </section>
+        <section class="paragraphe">
+                <h3>how it work</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis omnis, earum, quisquam voluptates beatae rem
+                    at vel, quod deleniti facilis tempora ipsum natus ullam. Doloribus dolore dolorem eos expedita atque!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, aut blanditiis dolorum asperiores impedit
+                    quis esse odio error incidunt omnis quas expedita voluptas, dolore praesentium ab hic, enim molestias?
+                    Officia?</p>
+        </section>
+
+            <section class="form-class paragraphe">
+
+                <form id="form" method=post enctype=multipart/form-data>
+                    <div class="methode">
+                        <fieldset>
+                            <legend>Réglage</legend>
+                            <div class="radio-methode radio-class">
+                                <input type="radio" name="methode" id="premiere" value="1" onclick="document.getElementById('input-bit').disabled = true">
+                                <label for="premiere">JPEG-JSTEG</label>
+                                <input type="radio" name="methode" id="deux" value="2" onclick="document.getElementById('input-bit').disabled = false">
+                                <label for="deux">Méthode Proposé</label>
+                            </div>
+                            
+                            <span id="methode2-bit">
+
+                                <input type="number" id="input-bit" name="methode2-bit" value="" required disabled>
+                                <label for="input-bit">
+                                    <span>Clé d'insertion</span>
+                                </label>
+
+                            </span>
+                            <div class="canal">
+                                <div class="radio-canal radio-class">
+                                    <input type="radio" name="canal" id="Y" value="0">
+                                    <label for="Y">Y</label>
+                                    <input type="radio" name="canal" id="Cb" value="1">
+                                    <label for="Cb">Cb</label>
+                                    <input type="radio" name="canal" id="Cr" value="2">
+                                    <label for="Cr">Cr</label>
+                                </div>
+                            </div>
+                            
+                        </fieldset>
+                        
+                    </div>
+                    <div class="bloc-image-cover form-input">
+
+                        <div class="coverClass in-out-img">
+                            {% if filename %}
+                                <img src="../{{filename}}" alt="image priview" id="cover">
+                            {% else%}
+                                <img src="/static/img/upload.png" alt="image priview" id="cover-default">
+                            {% endif %}
+                        </div>
+                        <input type=file name=file id="file" class="button"
+                        onchange="preview(event)">
+                        
+                    </div>
+                    <div class="secret-text-container form-input">
+                        <label>Le message a caché</label>
+                        <textarea id="text-secret" rows="20" cols="20" name="text-secret" ></textarea>
+                        <br>
+                        <input type=submit value=Dissimuler class="button">
+                    </div>
+                    <div class="bloc-stego form-input">
+                        <div class="in-out-img">
+                            {% if result_path %}
+                            <img src="../image_transform.jpg" alt="image stego" id="img-stego">
+                            {% else %}
+                            <img src="../static/img/image-1.png" alt="image stego" id="img-stego-default">
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                </form>
+
+                <div class="evaluation">
+                    <p>
+                        {% if psnr %}
+                            Le PSNR de cette image couverture est :<br> {{ psnr }}
+                        {% else %}
+                        {% endif %}
+                    </p>
+                </div>
+            </section>
+        
+    </main>
+{% endblock %}
