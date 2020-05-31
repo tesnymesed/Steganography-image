@@ -7,7 +7,7 @@ import stegano.extraction_methode
 from PIL import Image
 import time
 
-UPLOAD_FOLDER = '\stegano'
+UPLOAD_FOLDER = ''
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER']= UPLOAD_FOLDER
 
@@ -48,7 +48,7 @@ def dissimulation():
             print(filename)
             if methode == 2 :
                 bit = request.form['methode2-bit']
-                image_cover = Image.open(UPLOAD_FOLDER+'\\'+filename)
+                image_cover = Image.open(UPLOAD_FOLDER+filename)
                 # pylint: disable=too-many-function-args
                 image_stego, canal , cle , psnr = dissimulation_methode2(image_cover, message, bit)
                 #image_stego.save(UPLOAD_FOLDER+'\\stego.jpg')
@@ -93,7 +93,7 @@ def extraction():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-            image_stego =Image.open(UPLOAD_FOLDER+'\\'+filename)
+            image_stego =Image.open(UPLOAD_FOLDER+filename)
             print(filename)
             print(os.getcwd())
             if methode == 2 :
