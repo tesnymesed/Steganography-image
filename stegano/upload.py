@@ -62,7 +62,7 @@ def dissimulation():
                 print(type(canal))
                 print(type(cle))
             else:
-                image_stego, canal , cle , psnr = dissimulation_methode1(image_cover, message)
+                image_stego, canal , cle , psnr = dissimulation_methode1(image_cover, message,canal)
                 
             #return redirect(url_for('dissimulation'))
             print('canal = '+str(canal))
@@ -100,7 +100,7 @@ def extraction():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-            image_stego =Image.open(UPLOAD_FOLDER+'\\'+filename)
+            image_stego =Image.open(filename)#UPLOAD_FOLDER+'\\'+
             print(filename)
             print(os.getcwd())
             if methode == 2 :
