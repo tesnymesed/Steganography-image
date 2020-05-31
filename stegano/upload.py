@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from stegano.dissimulation_methode import dissimulation_methode2,dissimulation_methode1
 import stegano.extraction_methode
 from PIL import Image
+import time
 
 UPLOAD_FOLDER = 'D:\Documents\isil L3\S2\PFE\web page\stegano'
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
@@ -17,6 +18,8 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/dissimulation', methods=['GET', 'POST'])
 def dissimulation():
+    print('hey')
+    time.sleep(5)
     filename = None
     psnr = None
     bit = None
