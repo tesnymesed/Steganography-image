@@ -7,7 +7,7 @@ import stegano.extraction_methode
 from PIL import Image
 import time
 
-UPLOAD_FOLDER = 'D:\Documents\isil L3\S2\PFE\web page\stegano'
+UPLOAD_FOLDER = '\stegano'
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER']= UPLOAD_FOLDER
 
