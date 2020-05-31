@@ -7,7 +7,7 @@ import stegano.extraction_methode
 from PIL import Image
 import time
 
-UPLOAD_FOLDER = ''
+UPLOAD_FOLDER = 'stegano'
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER']= UPLOAD_FOLDER
 
@@ -26,6 +26,7 @@ def dissimulation():
     cle = None
     canal = None
     if request.method == 'POST':
+        start = time.time()
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
@@ -34,7 +35,7 @@ def dissimulation():
         message = " ce message est secret "
         message = request.form['text-secret']
         print("le message est : "+ message)
-        #position= int(request.form['canal'])
+        canal = int(request.form['canal'])
         methode = int(request.form['methode'])
         
         # if user does not select file, browser also
@@ -46,11 +47,12 @@ def dissimulation():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print(filename)
+
             if methode == 2 :
                 bit = request.form['methode2-bit']
-                image_cover = Image.open(UPLOAD_FOLDER+filename)
+                image_cover = Image.open(UPLOAD_FOLDER+"\\"+filename)
                 # pylint: disable=too-many-function-args
-                image_stego, canal , cle , psnr = dissimulation_methode2(image_cover, message, bit)
+                image_stego, canal , cle , psnr = dissimulation_methode2(image_cover, message, bit,canal)
                 #image_stego.save(UPLOAD_FOLDER+'\\stego.jpg')
                 #image = Image.open(UPLOAD_FOLDER+'\\stego.jpg')
                 #message_secret = stegano.extraction_methode.extraction_methode2(image, cle, canal, bit)
@@ -65,7 +67,8 @@ def dissimulation():
             #return redirect(url_for('dissimulation'))
             print('canal = '+str(canal))
             print('cle = '+str(cle))
-            image_stego.save(UPLOAD_FOLDER+'\\stego.jpg')
+            image_stego.save(UPLOAD_FOLDER+"\\"+'stego.jpg')
+            print("it took  :"+ str(time.time() - start) + " seconds.")
 
     return render_template('index.html', title="dissimulation", filename=filename, result_path=result_path, psnr=psnr, cle=cle, canal=canal)
 @app.route('/extraction', methods=['GET', 'POST'])
@@ -73,16 +76,20 @@ def extraction():
     filename = None
     bit = None
     cle = None
-    canal = None
+    canal = 2
     message_secret = None
     if request.method == 'POST':
+
+        start = time.time()
         # check if the post request has the file part
         if 'file' not in request.files:
             print("sdfsvfs")
             flash('No file part')
             return redirect(request.url)
         file = request.files['file']
+        
         canal= int(request.form['canal'])
+        
         methode = int(request.form['methode'])
         cle = 32
 
@@ -93,7 +100,7 @@ def extraction():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-            image_stego =Image.open(UPLOAD_FOLDER+filename)
+            image_stego =Image.open(UPLOAD_FOLDER+'\\'+filename)
             print(filename)
             print(os.getcwd())
             if methode == 2 :
@@ -111,6 +118,7 @@ def extraction():
             print('bit :' + str(bit))
             print('le canal a la fin : '+str(canal))
             print('la cle a la fin : '+str(cle))
+            print("it took  :"+ str(time.time() - start) + " seconds.")
 
 
     return render_template('extraction.html',title="Extraction", filename=filename,message_secret=message_secret )
