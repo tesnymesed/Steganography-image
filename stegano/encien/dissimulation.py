@@ -7,21 +7,24 @@ def cle_insertion(bits_len,nb_matrix):
     return x
 
 #fonction d'insertion
-def insertion (array , msg_binaire):
-    octet= msg_binaire #elle retourne un tableau qui va contenir tous les bits 
+def insertion (array , texte,cle):
+    octet= stegano.conversion.octet_to_bit(texte) #elle retourne un tableau qui va contenir tous les bits 
     bloc_height,bloc_width,height,width=array.shape
-    nb_bits_a_inserer=len(octet)
-    nb_bits_par_bloc=cle_insertion(nb_bits_a_inserer,bloc_height*bloc_width)
+    nb_bits_par_bloc=cle 
     pos=0
     bit_inserer=0
-    
+    nb_bits_a_inserer=len(octet)
     
     array_insertion=numpy.ones((bloc_height,bloc_width,height,width)) #ce tableau va contenir toutes les sous-matrice apres insertion
     for  i in range (bloc_height):
         for  j in range (bloc_width) :
             calcul_matrix=stegano.DCT_quantification.copy(array [i][j])
             
-            
+            if i==0 and j==0 :
+
+               print("voici la matrice de calcul ")
+
+               print(calcul_matrix)
 
             cpt=0
       
@@ -39,28 +42,35 @@ def insertion (array , msg_binaire):
                         cpt=cpt+1
                         bit_inserer=bit_inserer+1
 
-            
+            if i==0 and j==0:
+
+
+                print ("voici la matrice de calcul apres insertion \n",calcul_matrix)
+
                 
 
    
             array_insertion[i][j]=calcul_matrix   
-         
+        
 
+      
 
     return array_insertion   
 
-def extraction (data,cle1):
+def extraction (data,cle2,cle1):
 
     bloc_height,bloc_width,height,width=data.shape
     bits=[]
-    nb_bits_par_bloc=cle_insertion(cle1,bloc_height*bloc_width)
+    nb_bits_par_bloc=cle1
     nb_bits_extrait=0
-    nb_bits_a_extraire=cle1
+    nb_bits_a_extraire=cle2
 
     for  i in range(bloc_height) :
         for j in range(bloc_width) :
             
             matrix_extraction=data[i][j]
+            if i ==0 and j==0 :
+                print("voici la matrice data ",matrix_extraction)
             
                 
             cpt=0
@@ -72,6 +82,8 @@ def extraction (data,cle1):
                         
                         x=int(matrix_extraction[k][l])
                         y=bin(x)
+                        print(y)
+                        
                         bits.append(y[len(y)-1])
                         nb_bits_extrait=nb_bits_extrait+1
                         cpt=cpt+1
@@ -83,12 +95,12 @@ def case_insertion ():
     cases=numpy.array([[0,4],[0,5],[0,6],[0,7],[1,3],[1,4],[1,5],[1,6],[2,2],[2,3],[2,4],[2,5],[3,1],[3,2],[3,3],[3,4],[4,0],[4,1],[4,2],[4,3],[5,0],[5,1],[5,2],[6,0],[6,1],[7,0]])
     return  cases 
 
-def insertion_methode2(array , msg_binaire,bit):
+def insertion_methode2(array , texte,bit):
 
-    octet= msg_binaire #elle retourne un tableau qui va contenir tous les bits 
+    octet= stegano.conversion.octet_to_bit(texte) #elle retourne un tableau qui va contenir tous les bits 
     bloc_height,bloc_width,height,width=array.shape
     msg_chiffrer=xor(octet,bit)
-    
+    print(msg_chiffrer)
     pos=0
     bit_inserer=0
     nb_bits_a_inserer=len(octet)
@@ -105,7 +117,9 @@ def insertion_methode2(array , msg_binaire,bit):
         for j in range(bloc_width):
 
             calcul_matrix =stegano.DCT_quantification.copy(array [i][j])
-            
+            if i==0 and j==0:
+                print(calcul_matrix)
+
             k=0
             cpt=0
         
@@ -143,7 +157,9 @@ def insertion_methode2(array , msg_binaire,bit):
 
 
             array_insertion[i][j]=calcul_matrix   
-           
+            if i==0 and j==0 :
+                print(calcul_matrix) 
+
     
 
 
@@ -151,12 +167,12 @@ def insertion_methode2(array , msg_binaire,bit):
 
 
 
-def extraction_methode2(array,taille_message,bit):
+def extraction_methode2(array,cle2,bit):
     bloc_height,bloc_width,height,width=array.shape
     bits=[]
     
     nb_bits_extrait=0
-    nb_bits_a_extraire=taille_message
+    nb_bits_a_extraire=cle2
     cases=case_insertion()
     
 
@@ -165,7 +181,8 @@ def extraction_methode2(array,taille_message,bit):
             extraction_matrix=array[i][j]
             cpt=0
             k=0
-            
+            if i==0 and j==0 :
+                print(extraction_matrix)
             while k<26  and nb_bits_extrait<nb_bits_a_extraire :
                 position=cases[k]
                 x=int(extraction_matrix[int(position[0])][int(position[1])])
@@ -187,6 +204,10 @@ def extraction_methode2(array,taille_message,bit):
                 k=k+1
 
     stegano.conversion.b(bits)
+    print("message avant le déchiffrer")
+    print(bits)
+    print("message texte avant dechiffrer")
+    print(stegano.conversion.bit_to_string(bits))
     msg_dechiffrer=ixor(bits,bit)
 
     return stegano.conversion.bit_to_string(msg_dechiffrer)           

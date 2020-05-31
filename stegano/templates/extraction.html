@@ -50,12 +50,17 @@
         <div class="bloc-image-cover form-input">
 
             <div class="coverClass in-out-img">
-            
+                {% if filename %}
+                    <img src="../{{filename}}" alt="image priview" id="cover">
+                {% else%}
+                    <img src="/static/img/upload.png" alt="image priview" id="cover-default">
+                {% endif %}
             </div>
             <input type=file name=file id="file" class="button"
             onchange="preview(event)">
             
-        </div>   
+        </div> 
+        <input type=submit value=Dissimuler class="button">  
         <div class="arrow">
             <img src="../static/img/trajectory.png" alt="">
         </div>       
