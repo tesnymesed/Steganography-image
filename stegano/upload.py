@@ -19,7 +19,7 @@ def allowed_file(filename):
 @app.route('/dissimulation', methods=['GET', 'POST'])
 def dissimulation():
     print('hey')
-    time.sleep(5)
+    time.sleep(20)
     filename = None
     psnr = None
     bit = None
