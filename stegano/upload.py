@@ -18,7 +18,6 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/dissimulation', methods=['GET', 'POST'])
 def dissimulation():
-    return render_template('index.html', title="dissimulation")
     
     filename = None
     psnr = None
