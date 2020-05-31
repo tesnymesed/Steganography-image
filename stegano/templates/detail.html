@@ -7,4 +7,28 @@
 {% endblock %}
     
 {% block content %}
+<main>
+    <section class="paragraphe">
+        <h3>C'est quoi la Stéganographie ? </h3>
+        <p>
+            La stéganographie à pour but précis de cacher au sein 
+            d’un message primaire qu'on appelle aussi message de couverture, un message secondaire .
+            Bien entendu il faut que le message primaire soit
+            lisible par tout le monde , et qu’il reste 
+            visuellement inchangé par rapport à ce qu’il était 
+            avant introduction du message secondaire.
+            Le message secondaire se doit d’être parfaitement invisible,
+            mais uniquement accessible par des personnes propriétaires
+            d’une information secrète, une "clef" par exemple qui permettrait
+            son extraction.s Le message peut être texte, image, son, video, … . 
+        </p>
+        <p>Dans notre cas nous utilisons une image comme message de couverture(message primaire), et un text comme message secondaire.</p>
+    </section>
+    <section class="paragraphe">
+            <h3>Comment ça marche ?</h3>
+            <p>Pour inserer le message secret dans l'image il faut introduire chaque bit du message secret au niveau d'un pixel de l'image de manière a ne pas perdre le message secret 
+                au même temps ne pas trop toucher l'image (la couverture)</p>
+            <p></p>
+    </section>
+</main>
 {% endblock %}

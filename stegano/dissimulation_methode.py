@@ -11,21 +11,21 @@ def dissimulation_methode1(image_cover, message, canal):
         list_8x8_quantized_Y=stegano.DCT_quantification.quantized_dct_array(list_8x8,0,int(1))
         list_8x8_quantized_Cb=stegano.DCT_quantification.quantized_dct_array(list_8x8,1,int(1))
         list_8x8_quantized_Cr=stegano.DCT_quantification.quantized_dct_array(list_8x8,2,int(1))
-        msg_binaire=stegano.conversion.octet_to_bit(message)
-        taille_message=len(msg_binaire)
+        msg_binaire = stegano.conversion.octet_to_bit(message)
+        taille_message = len(msg_binaire)
         
         cle=taille_message #calculé pour lextractiion
 
-        list_8x8_quantized_insertion_Y =stegano.dissimulation.insertion(list_8x8_quantized_Y,msg_binaire)
-        list_8x8_quantized_insertion_Cb =stegano.dissimulation.insertion(list_8x8_quantized_Cb,msg_binaire)
-        list_8x8_quantized_insertion_Cr =stegano.dissimulation.insertion(list_8x8_quantized_Cr,msg_binaire)
+        list_8x8_quantized_insertion_Y = stegano.dissimulation.insertion(list_8x8_quantized_Y,msg_binaire)
+        list_8x8_quantized_insertion_Cb = stegano.dissimulation.insertion(list_8x8_quantized_Cb,msg_binaire)
+        list_8x8_quantized_insertion_Cr = stegano.dissimulation.insertion(list_8x8_quantized_Cr,msg_binaire)
 
-        idct_iquantized_Y=stegano.DCT_quantification.iquantized_dct_array(list_8x8_quantized_insertion_Y,int(1))
-        idct_iquantized_Cb=stegano.DCT_quantification.iquantized_dct_array(list_8x8_quantized_insertion_Cb,int(1))
-        idct_iquantized_Cr=stegano.DCT_quantification.iquantized_dct_array(list_8x8_quantized_insertion_Cr,int(1))
-        one_bloc_2dim_y_Y=stegano.redimension.i_bloc_partition_1dim(idct_iquantized_Y)
-        one_bloc_2dim_y_Cb=stegano.redimension.i_bloc_partition_1dim(idct_iquantized_Cb)
-        one_bloc_2dim_y_Cr=stegano.redimension.i_bloc_partition_1dim(idct_iquantized_Cr)
+        idct_iquantized_Y = stegano.DCT_quantification.iquantized_dct_array(list_8x8_quantized_insertion_Y,int(1))
+        idct_iquantized_Cb = stegano.DCT_quantification.iquantized_dct_array(list_8x8_quantized_insertion_Cb,int(1))
+        idct_iquantized_Cr = stegano.DCT_quantification.iquantized_dct_array(list_8x8_quantized_insertion_Cr,int(1))
+        one_bloc_2dim_y_Y = stegano.redimension.i_bloc_partition_1dim(idct_iquantized_Y)
+        one_bloc_2dim_y_Cb = stegano.redimension.i_bloc_partition_1dim(idct_iquantized_Cb)
+        one_bloc_2dim_y_Cr = stegano.redimension.i_bloc_partition_1dim(idct_iquantized_Cr)
 
 
         image_result_dct_idct_Y=stegano.DCT_quantification.dct_idct_image(image_YCbCr,one_bloc_2dim_y_Y,int(0))
