@@ -62,9 +62,9 @@ def dissimulation():
                 image_stego, canal , cle , psnr = dissimulation_methode1(image_cover, message,canal)
                 
             #return redirect(url_for('dissimulation'))
-            print('bit = '+str(bit))
+            print('clé cryptage = '+str(bit))
             print('canal = '+str(canal))
-            print('cle = '+str(cle))
+            print("cle d'insertion ="+str(cle))
             image_stego.save(UPLOAD_FOLDER+"\\"+'stego.jpg')
             print("it took  :"+ str(time.time() - start) + " seconds.")
 
@@ -96,7 +96,7 @@ def extraction():
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            file.save(filename)#)#os.path.join(app.config['UPLOAD_FOLDER'],
             image_stego =Image.open(filename)#UPLOAD_FOLDER+'\\'+
             print(filename)
             print(os.getcwd())

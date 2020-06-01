@@ -4,7 +4,7 @@ import math
 
 ALPHABET=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
 				"1","2","3","4","5","6","7","8","9","0",
-				" ","'","é","à",'"',"-","=","+","*","è","ç","#","&","<",">",",",".",";",":","!","?","@","(",")","{","}","/",'%',"[","]",
+				" ","'","é","à",'"',"-","=","+","*","è","ç","#","&","<",">",",",".",";",":","!","?","@","(",")","{","}","/",'%',"[","]",'\\','\x11','ä',
 				"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 
 def pgcd(a,b):
@@ -16,11 +16,13 @@ def pgcd(a,b):
 
 def chiffrementAffine(a,cle,L):
 
-        try:
-            x=ALPHABET.index(L)
-        except:
-            print(L)
+        
+        #x=ALPHABET.index(L)
+        x=ord(L)
+        
         y=(a*x+cle)%(len(ALPHABET))
+        if ALPHABET[y] == '\\':
+            return ALPHABET[y]+'\\'
         return ALPHABET[y]
 
 # Calcul de l'inverse d'un nombre modulo (len(ALPHABET))
@@ -34,9 +36,12 @@ def inverse(a):
 # Fonction de déchiffrement
 
 def dechiffrementAffine(a,cle,L):
-    x=ALPHABET.index(L)
+
+    #x=ALPHABET.index(L)
+    x=ord(L)
     
     y=(inverse(a)*(int(x)-int(cle)))%(len(ALPHABET))
+
     return ALPHABET[y]
                 
 
