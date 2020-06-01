@@ -189,9 +189,9 @@ def extraction_methode2(array,taille_message,bit):
     stegano.conversion.b(bits)
   
     message = stegano.conversion.bit_to_string(bits)
-    print('le message apres déchifrement :'+message)
+    print('le message apres déchifrement :'+str(message))
     msg_dechiffrer=stegano.codage_message.decrypt(message,bit)
-    print(' message dechiffrer : '+msg_dechiffrer)
+    print(' message dechiffrer : '+str(msg_dechiffrer))
     return msg_dechiffrer           
 
 

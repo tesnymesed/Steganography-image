@@ -63,7 +63,7 @@
                     </div>
                     <div class="secret-text-container form-input">
                         <label>Le message a caché</label>
-                        <textarea id="text-secret" rows="20" cols="20" name="text-secret" ></textarea>
+                        <textarea id="text-secret" rows="20" cols="20" name="text-secret" placeholder=" Entrer le Message a caché "></textarea>
                         <br>
                         <input type=submit value=Dissimuler class="button">
                     </div>
@@ -79,14 +79,34 @@
                     
                 </form>
 
-                <div class="evaluation">
-                    <p>
-                        {% if psnr %}
-                            Le PSNR de cette image couverture est :<br> {{ psnr }}
-                        {% else %}
-                        {% endif %}
-                    </p>
+                <div class="cle">
+                    {% if cle_cryptage %}
+                    <p>La clé du cryptage est : {{cle_cryptage}}</p>
+                    {% endif %}
+                    {% if cle_insertion %}
+                    <p>La clé d'insertion est : {{cle_insertion}}</p>
+                    {% endif %}
+                    {% if canal %}
+                    <p>Le canal est : {{canal}}</p>
+                    {% endif %}
                 </div>
+               
+                        {% if psnr %}
+                        <div class="evaluation">
+                            <p>
+                            Le PSNR de cette image couverture est :<br> {{ psnr }}
+                            </p>
+                        </div>
+                        {% endif %}
+                        
+
+                    <!--{% if %}
+                    <div class="extraction">
+                        <form action="" method=post enctype=multipart/form-data>
+                            <input type="button" name="extraction" value="Esseyer l'extraction" class="button">
+                        </form>
+                    </div>-->
+                   
             </section>
         
     </main>

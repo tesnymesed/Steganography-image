@@ -69,7 +69,7 @@ def dissimulation_methode2(image_cover, message, bit, canal) :
 
 
     msg_chiffrer=stegano.codage_message.crypt(str(message),bit)
-    print(" le message chiffre est : "+msg_chiffrer)
+    print(" le message chiffre est : "+str(msg_chiffrer))
 
     msg_binaire=stegano.conversion.octet_to_bit(msg_chiffrer)
     taille_message=len(msg_binaire)

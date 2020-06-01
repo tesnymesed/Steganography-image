@@ -22,10 +22,10 @@ def dissimulation():
     
     filename = None
     psnr = None
-    bit = None
-    result_path = None
-    cle = None
+    cle_cryptage = None
+    cle_insertion = None
     canal = None
+    result_path = None
     if request.method == 'POST':
         start = time.time()
         # check if the post request has the file part
@@ -52,25 +52,26 @@ def dissimulation():
             if methode == 2 :
 
                 #bit = int(random()*100)
-                bit = request.form['methode2-bit']
+                cle_cryptage = int(request.form['methode2-bit'])
                 
                 image_cover = Image.open(UPLOAD_FOLDER+"\\"+filename)
                 # pylint: disable=too-many-function-args
-                image_stego, canal , cle , psnr = dissimulation_methode2(image_cover, message, bit,canal)  
-                #message_secret = stegano.extraction_methode.extraction_methode2(image_stego, cle, canal, bit)
+                image_stego, canal , cle_insertion , psnr = dissimulation_methode2(image_cover, message, cle_cryptage,canal)  
+                #message_secret = stegano.extraction_methode.extraction_methode2(image_stego, cle, canal, cle_cryptage)
                 #print(message_secret)
 
             else:
-                image_stego, canal , cle , psnr = dissimulation_methode1(image_cover, message,canal)
+                image_stego, canal , cle_insertion , psnr = dissimulation_methode1(image_cover, message,canal)
                 
             #return redirect(url_for('dissimulation'))
-            print('clé cryptage = '+str(bit))
+            print('clé cryptage = '+str(cle_cryptage))
             print('canal = '+str(canal))
-            print("cle d'insertion ="+str(cle))
+            print("cle d'insertion ="+str(cle_insertion))
+            result_path = '..\\stego.jpg'
             image_stego.save(UPLOAD_FOLDER+"\\"+'stego.jpg', quality=100, subsampling=0)
             print("it took  :"+ str(time.time() - start) + " seconds.")
 
-    return render_template('index.html', title="dissimulation", filename=filename, result_path=result_path, psnr=psnr, cle=cle, canal=canal)
+    return render_template('index.html', title="dissimulation", filename=filename, result_path=result_path , psnr=psnr, cle_insertion=cle_insertion, canal=canal, cle_cryptage=cle_cryptage)
 @app.route('/extraction', methods=['GET', 'POST'])
 def extraction():
     filename = None

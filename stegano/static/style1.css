@@ -162,7 +162,8 @@
             padding: 5% 0 7% 0;
             width: 100%;
             height: auto;
-            box-shadow: 0 0 10px black; 
+            box-shadow: 0 0 10px black;
+            overflow: auto; 
         }
         main .paragraphe h3{
             margin-top: 0; 
@@ -182,6 +183,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            margin: 0 2% 0 2%;
             
         }
         section.form-class #form .methode fieldset{
@@ -192,14 +194,14 @@
         }
         section.form-class #form .methode fieldset .radio-class{
             padding-top: 15px;
-            font-size: 18px;
+            font-size: 15px;
             width: 300px;
             margin-left: 0;
             /*border: 5px solid rgb(3, 51, 3);*/
             padding-bottom: 15px;
         }
         section.form-class #form .methode fieldset .radio-canal input{
-            margin-left: 50px;
+            margin-left: 6px;
         }
 
         section.form-class #form .methode fieldset #methode2-bit{
@@ -207,7 +209,17 @@
         }
         textarea {
             resize: none;
-            background-color: rgb(115, 218, 112);
+            background-color: white;
+            height: 300px;
+            box-shadow: 0 0 10px black;
+            
+        }
+        textarea:focus{
+            border: 3px green solid;
+            
+        }
+        .secret-text-container{
+            
         }
         section.form-class .form-input{
             display: inline-block;
@@ -246,6 +258,7 @@
             margin: 20px;
         }
         section.form-class .evaluation{
+            padding: 20px 0 20px 0s;
             height: 200px;
             width: 400px;
             transform: translate(-50%,-50%);
@@ -253,7 +266,8 @@
             margin-left: 50%;
             background-color: rgb(255, 255, 255);
             color: black;
-            border: 5px rgb(42, 175, 38) solid;
+            /*border: 5px rgb(42, 175, 38) solid;*/
+            box-shadow: 0 0 15px /*rgb(42, 175, 38)*/ black;
         }
         #form .methode{
         flex-basis: 100%;
@@ -331,4 +345,13 @@
             transform: translateX(0px);
             transition: all 0.6s ease;
         }
-        
+
+        section.form-class .extraction{
+            width: 100%;
+        }
+        section.form-class .extraction input{
+            display: inline-block;
+            margin-left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 20px;
+        }

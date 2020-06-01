@@ -16,6 +16,9 @@ main .form-class .secret-message{
     margin-right: 7%;
     margin-top: 2%;
 }
+main .form-class .secret-message+p{
+    padding: 20px 0 20px 0;
+}
 #form .subbmit{
     position: relative;
 }
