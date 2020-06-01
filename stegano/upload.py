@@ -50,8 +50,10 @@ def dissimulation():
             print(filename)
 
             if methode == 2 :
+
+                #bit = int(random()*100)
                 bit = request.form['methode2-bit']
-                bit = int(random()*100)
+                
                 image_cover = Image.open(UPLOAD_FOLDER+"\\"+filename)
                 # pylint: disable=too-many-function-args
                 image_stego, canal , cle , psnr = dissimulation_methode2(image_cover, message, bit,canal)  
@@ -65,7 +67,7 @@ def dissimulation():
             print('clé cryptage = '+str(bit))
             print('canal = '+str(canal))
             print("cle d'insertion ="+str(cle))
-            image_stego.save(UPLOAD_FOLDER+"\\"+'stego.jpg')
+            image_stego.save(UPLOAD_FOLDER+"\\"+'stego.jpg', quality=100, subsampling=0)
             print("it took  :"+ str(time.time() - start) + " seconds.")
 
     return render_template('index.html', title="dissimulation", filename=filename, result_path=result_path, psnr=psnr, cle=cle, canal=canal)
