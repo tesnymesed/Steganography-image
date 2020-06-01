@@ -1,6 +1,8 @@
 import stegano.conversion
 import numpy
 import stegano.DCT_quantification
+#from codage_message import crypt,decrypt
+import stegano.codage_message
 
 def cle_insertion(bits_len,nb_matrix):
     x=int(bits_len/nb_matrix)+1
@@ -83,15 +85,14 @@ def case_insertion ():
     cases=numpy.array([[0,4],[0,5],[0,6],[0,7],[1,3],[1,4],[1,5],[1,6],[2,2],[2,3],[2,4],[2,5],[3,1],[3,2],[3,3],[3,4],[4,0],[4,1],[4,2],[4,3],[5,0],[5,1],[5,2],[6,0],[6,1],[7,0]])
     return  cases 
 
-def insertion_methode2(array , msg_binaire,bit):
+def insertion_methode2(array , msg_binaire, bit):
 
     octet= msg_binaire #elle retourne un tableau qui va contenir tous les bits 
     bloc_height,bloc_width,height,width=array.shape
-    msg_chiffrer=xor(octet,bit)
     
     pos=0
     bit_inserer=0
-    nb_bits_a_inserer=len(octet)
+    nb_bits_a_inserer=len(msg_binaire)
     cases= case_insertion()
     i=0
     j=0
@@ -116,26 +117,25 @@ def insertion_methode2(array , msg_binaire,bit):
                 coef=calcul_matrix[position[0]][position[1]]
                 x=bin(int(coef))
 
-                if nb_bits_a_inserer-bit_inserer !=1 :
-                    z=x[0:len(x)-2]+str(msg_chiffrer[pos])
+                if nb_bits_a_inserer - bit_inserer !=1 :
+                    z=x[0:len(x)-2]+str(msg_binaire[pos])
                 
                     pos=pos+1
 
-                    z=z[0:len(z)]+str(msg_chiffrer[pos])
+                    z=z[0:len(z)]+str(msg_binaire[pos])
                     cpt=cpt+2
                     bit_inserer=bit_inserer+2
                     pos=pos+1
 
                 else:
                        
-                    z=x[0:len(x)-1]+str(msg_chiffrer[pos])
+                    z=x[0:len(x)-1]+str(msg_binaire[pos])
                     pos=pos+1
                     cpt=cpt+1
                     bit_inserer=bit_inserer+1
                     
 
                
-
                 y=int(z,2)
                 calcul_matrix[position[0]][position[1]]=y
                 k=k+1
@@ -185,11 +185,13 @@ def extraction_methode2(array,taille_message,bit):
                     cpt=cpt+1
 
                 k=k+1
-
+                
     stegano.conversion.b(bits)
-    msg_dechiffrer=ixor(bits,bit)
-
-    return stegano.conversion.bit_to_string(msg_dechiffrer)           
+  
+    message = stegano.conversion.bit_to_string(bits)
+    msg_dechiffrer=stegano.codage_message.decrypt(message,bit)
+    print(' message dechiffrer : '+msg_dechiffrer)
+    return msg_dechiffrer           
 
 
 def xor (array,bit):

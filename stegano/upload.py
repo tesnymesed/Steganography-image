@@ -6,6 +6,7 @@ from stegano.dissimulation_methode import dissimulation_methode2,dissimulation_m
 import stegano.extraction_methode
 from PIL import Image
 import time
+from random import random
 
 UPLOAD_FOLDER = 'stegano'
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
@@ -50,21 +51,18 @@ def dissimulation():
 
             if methode == 2 :
                 bit = request.form['methode2-bit']
+                bit = int(random()*100)
                 image_cover = Image.open(UPLOAD_FOLDER+"\\"+filename)
                 # pylint: disable=too-many-function-args
-                image_stego, canal , cle , psnr = dissimulation_methode2(image_cover, message, bit,canal)
-                #image_stego.save(UPLOAD_FOLDER+'\\stego.jpg')
-                #image = Image.open(UPLOAD_FOLDER+'\\stego.jpg')
-                #message_secret = stegano.extraction_methode.extraction_methode2(image, cle, canal, bit)
+                image_stego, canal , cle , psnr = dissimulation_methode2(image_cover, message, bit,canal)  
+                #message_secret = stegano.extraction_methode.extraction_methode2(image_stego, cle, canal, bit)
                 #print(message_secret)
 
-
-                print(type(canal))
-                print(type(cle))
             else:
                 image_stego, canal , cle , psnr = dissimulation_methode1(image_cover, message,canal)
                 
             #return redirect(url_for('dissimulation'))
+            print('bit = '+str(bit))
             print('canal = '+str(canal))
             print('cle = '+str(cle))
             image_stego.save(UPLOAD_FOLDER+"\\"+'stego.jpg')
@@ -91,8 +89,7 @@ def extraction():
         canal= int(request.form['canal'])
         
         methode = int(request.form['methode'])
-        cle = 32
-
+        cle = int(request.form['cle_insertion'])
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)

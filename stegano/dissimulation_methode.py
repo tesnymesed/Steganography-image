@@ -66,12 +66,21 @@ def dissimulation_methode2(image_cover, message, bit, canal) :
     image_stego=stegano.redimension.redimensioner(image_cover)  
     image_YCbCr=stegano.conversion.convert_RGB_to_YCbCr(image_stego)
     list_8x8=stegano.redimension.bloc_partition(image_YCbCr,8)
+
+
+    msg_chiffrer=stegano.codage_message.crypt(str(message),bit)
+    print(" le message chiffre est : "+msg_chiffrer)
+
+    msg_binaire=stegano.conversion.octet_to_bit(msg_chiffrer)
+    taille_message=len(msg_binaire)
+
+
     if canal == -1:
         list_8x8_quantized_Y=stegano.DCT_quantification.quantized_dct_array(list_8x8,0,int(2))
         list_8x8_quantized_Cb=stegano.DCT_quantification.quantized_dct_array(list_8x8,1,int(2))
         list_8x8_quantized_Cr=stegano.DCT_quantification.quantized_dct_array(list_8x8,2,int(2))
-        msg_binaire=stegano.conversion.octet_to_bit(message)
-        taille_message=len(msg_binaire)
+        
+       
 
         list_8x8_quantized_insertion_Y =stegano.dissimulation.insertion_methode2(list_8x8_quantized_Y,msg_binaire, bit)
         list_8x8_quantized_insertion_Cb =stegano.dissimulation.insertion_methode2(list_8x8_quantized_Cb,msg_binaire, bit)
@@ -104,8 +113,6 @@ def dissimulation_methode2(image_cover, message, bit, canal) :
 
     else:
         list_8x8_quantized = stegano.DCT_quantification.quantized_dct_array(list_8x8 ,canal ,int(2))
-        msg_binaire=stegano.conversion.octet_to_bit(message)
-        taille_message=len(msg_binaire)
         
         cle=taille_message #calculé pour lextractiion
 
