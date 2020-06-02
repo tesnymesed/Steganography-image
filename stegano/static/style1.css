@@ -97,14 +97,19 @@
             z-index: 999;
         }
 
-        .hero {
+        .hero{
             margin: 0;
             padding: 0;
             position: absolute;
             width: 40%;
             /*transform: translate(-50%,-50%);*/
-            top : 60%;
+            top : 45%;
             right: 50px;
+        }
+        .hero h3, .hero h2{
+            margin-top: 10%;
+            color: white;
+            text-align: center;
         }
 
         h1 {
@@ -212,13 +217,16 @@
         }
         textarea {
             resize: none;
-            background-color: white;
+            background-color: rgb(145, 137, 137);
             height: 300px;
             box-shadow: 0 0 10px black;
+            border: none;
             
         }
         textarea:focus{
             border: 3px green solid;
+            background-color: white;
+            box-shadow: 0 0 20px green;
             
         }
         .secret-text-container{
