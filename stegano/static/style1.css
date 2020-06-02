@@ -4,9 +4,11 @@
             padding: 0;
             height: 100%;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: rgb(255, 255, 255);
         }
         .main{
             min-height: 100%;
+            
         }
 
         /*#cover {
@@ -29,6 +31,7 @@
             background-size: cover;
             background-position: center;
             position: relative;
+            box-shadow: 0 0 20px black;
         }
         header .row .icon{
             margin: 0;
@@ -233,9 +236,10 @@
         .in-out-img{
             width: 100%;
             height: 100%;
-            background: rgb(255, 255, 255);
+            /*background: rgb(255, 255, 255);*/
             overflow: hidden;
-            border: 10px rgba(63, 62, 62, 0.699) solid;
+            /*border: 10px rgba(63, 62, 62, 0.699) solid;*/
+            border-bottom: 5px green solid;
             position: relative;
         }
         .in-out-img img{
@@ -355,3 +359,24 @@
             transform: translate(-50%,-50%);
             font-size: 20px;
         }
+
+    .bloc-stego a.renisialiser{
+        padding: 5px 20px 5px 20px;
+        margin: 10px 0 5px 0;
+        background-color: white;
+        color: black;
+        text-decoration: none;
+        width: auto;
+        height: 100%;
+        font-size: 20px;
+        
+    }
+    .bloc-stego a.renisialiser:hover{
+        border: 1px rgb(13, 84, 190) solid;
+        background-color: rgb(170, 214, 231);
+    }
+    .bloc-stego div.renisialiser{
+        padding: 0;
+        margin: 30px 0 0 0;
+        text-align: center;
+    }

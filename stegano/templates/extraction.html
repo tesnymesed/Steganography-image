@@ -76,13 +76,19 @@
         <div class="arrow">
             <img src="../static/img/trajectory.png" alt="">
         </div>
-        {% endif %}       
-        <div class="secret-message">
+        {% endif %}  
+        <div>
+            <div class="secret-message">
             {% if message_secret %}
                 <p>le message est :</p>
                 <p>{{message_secret}}</p>
             {% endif %}
-        </div>
+            
+            </div>
+           
+        </div>     
+        
+        
     </form>
 </section>
 </main>
