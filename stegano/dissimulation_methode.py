@@ -1,9 +1,11 @@
 import stegano.redimension, stegano.conversion, stegano.DCT_quantification, stegano.dissimulation, stegano.psnr_mse, stegano.extraction_methode
 
 from PIL import Image
+#import numpy
+
 
 def dissimulation_methode1(image_cover, message, canal):
-
+    
     image_stego=stegano.redimension.redimensioner(image_cover)  
     image_YCbCr=stegano.conversion.convert_RGB_to_YCbCr(image_stego)
     list_8x8=stegano.redimension.bloc_partition(image_YCbCr,8)
@@ -36,13 +38,13 @@ def dissimulation_methode1(image_cover, message, canal):
         image_stego_Cb=stegano.conversion.convert_YCbCr_to_RGB(image_result_dct_idct_Cb)
         image_stego_Cr=stegano.conversion.convert_YCbCr_to_RGB(image_result_dct_idct_Cr)
 
-        psnr_Y=stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Y)
-        psnr_Cb=stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Cb)
-        psnr_Cr=stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Cr)
+        psnr_Y,mse_Y=stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Y)
+        psnr_Cb, mse_Cb=stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Cb)
+        psnr_Cr, mse_Cr=stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Cr)
 
-        if psnr_Y >= psnr_Cb and psnr_Y>psnr_Cr : return image_stego_Y, 0, cle, psnr_Y
-        if psnr_Cb >= psnr_Y and psnr_Cb > psnr_Cr : return image_stego_Cb,1, cle, psnr_Cb
-        return image_stego_Cr,2, cle, psnr_Cr
+        if psnr_Y >= psnr_Cb and psnr_Y>psnr_Cr : return image_stego_Y, 0, cle, psnr_Y, mse_Y
+        if psnr_Cb >= psnr_Y and psnr_Cb > psnr_Cr : return image_stego_Cb,1, cle, psnr_Cb, mse_Cb
+        return image_stego_Cr,2, cle, psnr_Cr, mse_Cr
 
     else:
         list_8x8_quantized = stegano.DCT_quantification.quantized_dct_array(list_8x8 ,canal ,int(1))
@@ -56,9 +58,9 @@ def dissimulation_methode1(image_cover, message, canal):
         one_bloc_2dim_y = stegano.redimension.i_bloc_partition_1dim(idct_iquantized)
         image_result_dct_idct = stegano.DCT_quantification.dct_idct_image(image_YCbCr, one_bloc_2dim_y ,int(canal))
         image_stego_result = stegano.conversion.convert_YCbCr_to_RGB(image_result_dct_idct)
-        psnr = stegano.psnr_mse.calculate_psnr(image_stego,image_stego_result)
+        psnr , mse = stegano.psnr_mse.calculate_psnr(image_stego,image_stego_result)
 
-        return image_stego_result, canal , cle, psnr 
+        return image_stego_result, canal , cle, psnr , mse
 
 
 def dissimulation_methode2(image_cover, message, bit, canal) :
@@ -103,13 +105,13 @@ def dissimulation_methode2(image_cover, message, bit, canal) :
         image_stego_Cb=stegano.conversion.convert_YCbCr_to_RGB(image_result_dct_idct_Cb)
         image_stego_Cr=stegano.conversion.convert_YCbCr_to_RGB(image_result_dct_idct_Cr)
 
-        psnr_Y=stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Y)
-        psnr_Cb=stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Cb)
-        psnr_Cr=stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Cr)
+        psnr_Y, mse_Y = stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Y)
+        psnr_Cb, mse_Cb = stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Cb)
+        psnr_Cr, mse_Cr = stegano.psnr_mse.calculate_psnr(image_stego,image_stego_Cr)
 
-        if psnr_Y >= psnr_Cb and psnr_Y>psnr_Cr : return image_stego_Y, 0, taille_message, psnr_Y
-        if psnr_Cb >= psnr_Y and psnr_Cb > psnr_Cr : return image_stego_Cb, 1, taille_message, psnr_Cb
-        return image_stego_Cr, 2, taille_message, psnr_Cr
+        if psnr_Y >= psnr_Cb and psnr_Y>psnr_Cr : return image_stego_Y, 0, taille_message, psnr_Y, mse_Y
+        if psnr_Cb >= psnr_Y and psnr_Cb > psnr_Cr : return image_stego_Cb, 1, taille_message, psnr_Cb, mse_Cb
+        return image_stego_Cr, 2, taille_message, psnr_Cr, mse_Cr
 
     else:
         list_8x8_quantized = stegano.DCT_quantification.quantized_dct_array(list_8x8 ,canal ,int(2))
@@ -121,7 +123,8 @@ def dissimulation_methode2(image_cover, message, bit, canal) :
         one_bloc_2dim_y = stegano.redimension.i_bloc_partition_1dim(idct_iquantized)
         image_result_dct_idct = stegano.DCT_quantification.dct_idct_image(image_YCbCr, one_bloc_2dim_y ,int(canal))
         image_stego_result = stegano.conversion.convert_YCbCr_to_RGB(image_result_dct_idct)
-        psnr = stegano.psnr_mse.calculate_psnr(image_stego,image_stego_result)
+        psnr, mse = stegano.psnr_mse.calculate_psnr(image_stego,image_stego_result)
 
-        return image_stego_result, canal , cle, psnr
+        return image_stego_result, canal , cle, psnr, mse
+
 

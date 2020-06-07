@@ -76,14 +76,15 @@
         document.getElementById('methode2-bit').innerHTML = text
     }
     function preview(event) {
-        var input = event.target.files[0];
+        var input = event.target.files;
         var reader = new FileReader();
         reader.onload = function () {
             var result = reader.result;
-            var img = document.getElementById("cover-default");
-            img.id= ""
-            img.src = result;
+            var img1 = document.getElementById("cover-default");
+            img1.classList= "";
+            img1.id=""
+            img1.src = result;
         };
-        reader.readAsDataURL(input);
+        reader.readAsDataURL(input[0]);
     }
 </script>

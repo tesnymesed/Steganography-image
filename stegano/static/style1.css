@@ -200,10 +200,11 @@
             border: none;
             border-bottom: 5px solid green;
         }
-        section.form-class #form .methode fieldset .radio-class{
+        section.form-class #form .methode fieldset .radio-class ,
+        section.form-class #form .methode fieldset .filtre{
             padding-top: 15px;
             font-size: 15px;
-            width: 300px;
+            width: 400px;
             margin-left: 0;
             /*border: 5px solid rgb(3, 51, 3);*/
             padding-bottom: 15px;
@@ -212,7 +213,7 @@
             margin-left: 6px;
         }
 
-        section.form-class #form .methode fieldset #methode2-bit{
+        section.form-class #form .methode fieldset #input-case{
             margin: 0 100px 0 100px;
         }
         textarea {
@@ -221,15 +222,13 @@
             height: 300px;
             box-shadow: 0 0 10px black;
             border: none;
-            
+            font-size: 1.3em;
+            font-weight: bolder;
         }
         textarea:focus{
             border: 3px green solid;
-            background-color: white;
-            box-shadow: 0 0 20px green;
-            
-        }
-        .secret-text-container{
+            /*background-color: white;*/
+            /*box-shadow: 0 0 20px green;*/
             
         }
         section.form-class .form-input{
@@ -240,6 +239,9 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+        section.form-class .form-input .secret-message{
+            overflow: scroll;
         }
         .in-out-img{
             width: 100%;
@@ -255,7 +257,8 @@
             height: 100%;
             
         }
-        .in-out-img img#cover-default , .in-out-img img#img-stego-default {
+        
+        .in-out-img img.input-default{
             position: absolute;
             top: 50%;
             left: 50%;
@@ -281,6 +284,18 @@
             /*border: 5px rgb(42, 175, 38) solid;*/
             box-shadow: 0 0 15px /*rgb(42, 175, 38)*/ black;
         }
+        section.form-class .evaluation-evaluation{
+            padding: 20px 0 20px 0s;
+            height: 200px;
+            width: 400px;
+            transform: translate(-50%,-50%);
+            margin-left: 23%;
+            margin-top: 200px;
+            background-color: rgb(255, 255, 255);
+            color: black;
+            /*border: 5px rgb(42, 175, 38) solid;*/
+            box-shadow: 0 0 15px /*rgb(42, 175, 38)*/ black;
+        }
         #form .methode{
         flex-basis: 100%;
         height: 90px;
@@ -289,13 +304,13 @@
             position: absolute;
             height: 100%;
         }
-        section.form-class #form #methode2-bit{
+        section.form-class #form #input-case{
             width: 20%;
             height: 100%;
             overflow: hidden;
             position: relative;
         }
-        section.form-class #form #methode2-bit input{
+        section.form-class #form #input-case input{
             width: 100%;
             height: 100%;
             border: none;
@@ -306,8 +321,8 @@
             color: white;
         }
         /* Chrome, Safari, Edge, Opera */
-        section.form-class #form #methode2-bit input::-webkit-outer-spin-button,
-        section.form-class #form #methode2-bit input::-webkit-inner-spin-button {
+        section.form-class #form #input-case input::-webkit-outer-spin-button,
+        section.form-class #form #input-case input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
         }
@@ -316,7 +331,7 @@
         input[type=number] {
         -moz-appearance: textfield;
         }
-        section.form-class #form #methode2-bit label{
+        section.form-class #form #input-case label{
             position: absolute;
             bottom: 0;
             left: 0;
@@ -326,7 +341,7 @@
             border-bottom: 3px solid inherit;
             color: rgb(255, 255, 255);
         }
-        section.form-class #form #methode2-bit label::after{
+        section.form-class #form #input-case label::after{
             content: "";
             width: 100%;
             height: 100%;
@@ -337,7 +352,7 @@
             transform: translateX(-100%);
             transition: all 0.3s ease;
         }
-        section.form-class #form #methode2-bit label span{
+        section.form-class #form #input-case label span{
             position: absolute;
             bottom: 5px;
             left: 0;
@@ -345,15 +360,15 @@
             transition: all 0.9s ease;
         }
 
-        section.form-class #form #methode2-bit input:focus + label span,
-        section.form-class #form #methode2-bit input:valid + label span {
+        section.form-class #form #input-case input:focus + label span,
+        section.form-class #form #input-case input:valid + label span {
             transform: translateY(-15px);
             transition: all 0.3s ease;
             color: #17bd17;
         }
 
-        section.form-class #form #methode2-bit input:focus + label::after,
-        section.form-class #form #methode2-bit input:valid + label::after{
+        section.form-class #form #input-case input:focus + label::after,
+        section.form-class #form #input-case input:valid + label::after{
             transform: translateX(0px);
             transition: all 0.6s ease;
         }
@@ -368,7 +383,7 @@
             font-size: 20px;
         }
 
-    .bloc-stego a.renisialiser{
+    .form-input a.renisialiser{
         padding: 5px 20px 5px 20px;
         margin: 10px 0 5px 0;
         background-color: white;
@@ -379,12 +394,32 @@
         font-size: 20px;
         
     }
-    .bloc-stego a.renisialiser:hover{
+    .form-input a.renisialiser:hover{
         border: 1px rgb(13, 84, 190) solid;
         background-color: rgb(170, 214, 231);
     }
-    .bloc-stego div.renisialiser{
+    .form-input div.renisialiser{
         padding: 0;
-        margin: 30px 0 0 0;
+        margin: 20px 0 0 0;
         text-align: center;
     }
+
+    .download{
+        text-align: end;
+        margin-top: 10px;
+    }
+    .download a{
+        padding: 2px 5px 2px 5px;
+        text-decoration: none;
+        font-size: 20px;
+        color: rgb(39, 202, 39);
+        transition: all .2s ease;
+    }
+    .download a:hover{
+        color: black;
+        background-color: green;
+        
+    }
+
+
+    

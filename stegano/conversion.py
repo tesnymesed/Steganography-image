@@ -41,6 +41,7 @@ def convert_RGB_to_YCbCr(image):
     for i in range(image.height):
         for j in range(image.width):
             pixel =image.getpixel((j,i))
+            #print('\n-----------------------\n'+str(pixel))
             r=pixel[0]
             g=pixel[1]
             b=pixel[2]

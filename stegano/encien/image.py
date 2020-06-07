@@ -1,7 +1,7 @@
 from PIL import Image 
 import numpy
 import math 
-import stegano.affichage ,stegano.conversion,stegano.DCT_quantification,stegano.dissimulation,stegano.redimension,stegano.psnr_mse
+import affichage , conversion,stegano.encien.DCT_quantification,stegano.encien.dissimulation,stegano.encien.redimension,stegano.encien.psnr_mse
 
 
 # def dissimulation_fct(chemain, secret_text, position, UPLOAD_FOLDER, bit = 0):
@@ -122,8 +122,8 @@ def pfe(chemain, secret_text, position, UPLOAD_FOLDER, bit = 0):
 
     if methode==1:
 
-       list_8x8_quantized_insertion =stegano.dissimulation.insertion(list_8x8_quantized,message,cle)
-       print(stegano.dissimulation.extraction(list_8x8_quantized_insertion,cle2,cle))
+       list_8x8_quantized_insertion =stegano.encien.dissimulation.insertion(list_8x8_quantized,message,cle)
+       print(stegano.encien.dissimulation.extraction(list_8x8_quantized_insertion,cle2,cle))
 
     else:
        #bit=input("entrer un bit")
@@ -155,7 +155,7 @@ def pfe(chemain, secret_text, position, UPLOAD_FOLDER, bit = 0):
     print("voici le nombre de bits ",cle2,"voici le nombre de de bits par matrice ",cle)
     if methode==1:
 
-       texte_extraction=stegano.dissimulation.extraction(image3_dct,cle2,cle)
+       texte_extraction=stegano.encien.dissimulation.extraction(image3_dct,cle2,cle)
 
     else:
         texte_extraction=stegano.dissimulation.extraction_methode2(image3_dct,cle2,bit)
@@ -167,3 +167,5 @@ def pfe(chemain, secret_text, position, UPLOAD_FOLDER, bit = 0):
     return psnr, image3
 
 
+if __name__ == "__main__":
+    pfe('animal.jpg','sami',2,'')

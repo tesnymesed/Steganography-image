@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename='extraction.css') }}">
+{% endblock %}
+
 {% block hero %}
     <div class="hero">
         <h1>Evaluation</h1>
@@ -7,4 +11,190 @@
 {% endblock %}
     
 {% block content %}
+<main>
+        
+    <section class="form-class paragraphe">
+
+        <form id="form" method=post enctype=multipart/form-data>
+            <div class="methode">
+                <fieldset>
+                    <legend>Réglage</legend>
+                    <div class="filtre">
+                        <input type="radio" name="filter" id="gaussian_blur" value="0" checked onclick="document.getElementById('lable_fiter_option').innerHTML = 'radius'">
+                        <label for="gaussian_blur">Gaussian Blur</label>
+                        <input type="radio" name="filter" id="median" value="1" onclick="document.getElementById('lable_fiter_option').innerHTML = 'nombre de fois'">
+                        <label for="median">Filter Médian</label>
+                    </div>
+                    
+                    <span id="input-case">
+
+                        <input type="number" id="input-bit" name="input-case" value="" required>
+                        <label for="input-bit">
+                            <span id="lable_fiter_option">Gaussian Blur</span>
+                        </label>
+
+                    </span>
+
+                    <!--<div class="canal">
+                        <div class="radio-canal radio-class">
+                            <input type="radio" name="canal" id="Y" value="0">
+                            <label for="Y">Y</label>
+                            <input type="radio" name="canal" id="Cb" value="1">
+                            <label for="Cb">Cb</label>
+                            <input type="radio" name="canal" id="Cr" value="2" checked>
+                            <label for="Cr">Cr</label>
+                            <input type="radio" name="canal" id="best" value="-1">
+                            <label for="best">Meilleur pour l'image</label>
+                        </div>
+                    </div>-->
+                    
+                </fieldset>
+
+            </div>
+            <div class="form-input">
+
+                <div class="in-out-img">
+                    {% if filename %}
+                        <img src="../static/img/{{filename}}" alt="image">
+                    {% else%}
+                       <img src="../static/img/upload.png" alt="image par défaut" class="input-default" id="cover-default">
+                    {% endif %}
+                </div>
+                <div class="upload">
+                    <input type=file name=file id="file" class="button"
+                    onchange="preview(event)">
+                </div>
+                
+                
+            </div>
+
+            
+            {% if psnr and mse %}
+                <div class="evaluation-evaluation">
+                    <p>
+                        Le PSNR de l'image est:<br> {{ psnr }}
+                    </p>
+                    <p>
+                        Le MSE de l'image est:<br> {{ mse }}
+                    </p>
+                </div>
+            {% else %}
+                <div class="subbmit">
+                    <input type=submit value='Appliquer le filtre' class="button"> 
+                </div>
+            {% endif %}
+
+
+            <div class="form-input">
+                <div class="in-out-img">
+                    {% if result_compression %}
+                    <img src="../static/img/{{result_compression}}" alt="image compresser">
+                    
+                    {% else %}
+                    <img src="../static/img/image-1.png" alt="image par défaut" class="input-default">
+                    {% endif %}
+
+                </div>
+                {% if result_compression %}
+                <div class="download">
+                    <a href="{{ url_for('download',result_stego=result_compression) }}">Télécharger</a>
+                </div>
+                {% endif %}
+                <div class="renisialiser">
+                    <a href="" class="renisialiser">réinitialiser</a>
+                </div>
+                <div class="renisialiser">
+                    <a href="#exraction" class="renisialiser">Extraction du message</a>
+                </div>
+                
+            </div>
+            
+        </form>
+         
+    </section>
+
+    <section class="form-class paragraphe" id="exraction">
+        <form id="form" method=post enctype=multipart/form-data>
+            <div class="methode">
+                <fieldset>
+                    <legend>Réglage</legend>
+                    <div class="radio-methode radio-class">
+                        <input type="radio" name="methode" id="premiere" value="1" onclick="document.getElementById('input-bit').disabled = true">
+                        <label for="premiere">JPEG-JSTEG</label>
+                        <input type="radio" name="methode" id="deux" value="2" onclick="document.getElementById('input-bit').disabled = false">
+                        <label for="deux">Méthode Proposé</label>
+                    </div>
+                    
+                    <span id="input-case">
+    
+                        <input type="number" id="input-bit" name="input-case" value="" required disabled>
+                        <label for="input-bit">
+                            <span>Clé de cryptage</span>
+                        </label>
+    
+                    </span>
+                    <span id="input-case">
+    
+                        <input type="number" id="input-bit" name="cle_insertion" value="" required>
+                        <label for="input-bit">
+                            <span>Clé d'insertion</span>
+                        </label>
+    
+                    </span>
+                    <div class="canal">
+                        <div class="radio-canal radio-class">
+                            <input type="radio" name="canal" id="Y" value="0" >
+                            <label for="Y">Y</label>
+                            <input type="radio" name="canal" id="Cb" value="1">
+                            <label for="Cb">Cb</label>
+                            <input type="radio" name="canal" id="Cr" value="2" checked>
+                            <label for="Cr">Cr</label>
+                        </div>
+                    </div>
+                    
+                </fieldset>
+                
+            </div>
+            <div class="form-input">
+    
+                <div class="in-out-img">
+                    {% if filename %}
+                        <img src="/stegano/{{filename}}" alt="image">
+                    {% else%}
+                        <img src="../static/img/upload.png" alt="image par défaut" class="input-default" id="cover-default">
+                    {% endif %}
+                </div>
+                <div class="upload">
+                    <input type=file name=file id="file" class="button"
+                    onchange="preview(event)">
+                </div>
+                
+            </div>
+            <div class="subbmit">
+                <input type=submit value=extraction class="button"> 
+            </div> 
+            
+            {% if message_secret %}
+            <div class="arrow">
+                <img src="../static/img/trajectory.png" alt="">
+            </div>
+            {% endif %}  
+            <div class="form-input">
+                <div class="secret-message">
+                {% if message_secret %}
+                    <p>le message est :</p>
+                    <p>{{message_secret}}</p>
+                {% endif %}
+                
+                </div>
+                <div class="renisialiser">
+                    <a href="" class="renisialiser">réinitialiser</a>
+                </div>
+               
+            </div>     
+            
+            
+        </form>
+    </section>
+</main>
 {% endblock %}

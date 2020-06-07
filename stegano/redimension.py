@@ -13,8 +13,12 @@ def redimensioner(image):
      image_height-=rest_division_height8
      print("les nouvelle coordonnée de limage :\n width = ",image_width,"\n height =",image_height) 
      image_new_size=image.resize((image_width,image_height))
+     #image_new_size.save('stegano\\static\\img'+'\\'+'lena2.jpg')
      return image_new_size
 
+def redimensioner2(image, image_width ,image_height):
+    image_new_size=image.resize((image_width,image_height))
+    return image_new_size
 
 # diviser limage en blocs de 8*8
 def bloc_partition(array,bloc_size):

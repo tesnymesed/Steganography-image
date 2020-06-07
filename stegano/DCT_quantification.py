@@ -39,9 +39,9 @@ def DCT_coefficients_Y (matrix,position):
             sum=0 
             for k in range (height) :
                 for l in range (width):
-                 dct1= matrix[k][l][int(position)]*math.cos((2 * k + 1) * i * math.pi / (2 * width))*math.cos((2 * l + 1) * j * math.pi / (2 * width))
+                    dct1= matrix[k][l][int(position)]*math.cos((2 * k + 1) * i * math.pi / (2 * width))*math.cos((2 * l + 1) * j * math.pi / (2 * width))
                 
-                 sum = sum + dct1
+                    sum = sum + dct1
 
             DCT_matrix[i][j] = ci * cj * sum 
             
@@ -119,7 +119,7 @@ def quantized_dct_array(array,position,methode):
             calcul_matrix=array[i][j]
             
 
-            matrix_dct=DCT_coefficients_Y(calcul_matrix,position)   
+            matrix_dct=DCT_coefficients_Y(calcul_matrix,position) 
             matrix_dct_quantized=numpy.ones((8,8)) 
            
             for k in range(8):

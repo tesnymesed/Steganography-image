@@ -22,12 +22,12 @@
                                 <input type="radio" name="methode" id="premiere" value="1" onclick="document.getElementById('input-bit').disabled = true">
                                 <label for="premiere">JPEG-JSTEG</label>
                                 <input type="radio" name="methode" id="deux" value="2" onclick="document.getElementById('input-bit').disabled = false">
-                                <label for="deux">Méthode Proposé</label>
+                                <label for="deux">Méthode Proposé par Chin-Chen Chang</label>
                             </div>
                             
-                            <span id="methode2-bit">
+                            <span id="input-case">
 
-                                <input type="number" id="input-bit" name="methode2-bit" value="" required disabled>
+                                <input type="number" id="input-bit" name="input-case" value="" required disabled>
                                 <label for="input-bit">
                                     <span>Clé de cryptage</span>
                                 </label>
@@ -43,7 +43,7 @@
                                     <input type="radio" name="canal" id="Cr" value="2" checked>
                                     <label for="Cr">Cr</label>
                                     <input type="radio" name="canal" id="best" value="-1">
-                                    <label for="best">The best for the image</label>
+                                    <label for="best">Meilleur pour l'image</label>
                                 </div>
                             </div>
                             
@@ -54,13 +54,16 @@
 
                         <div class="coverClass in-out-img">
                             {% if filename %}
-                                <img src="../{{filename}}" alt="image priview" id="cover">
+                                <img src="../static/img/{{filename}}" alt="image priview" id="cover">
                             {% else%}
-                                <img src="/static/img/upload.png" alt="image priview" id="cover-default">
+                               <img src="../static/img/upload.png" alt="image priview" class="input-default" id="cover-default">
                             {% endif %}
                         </div>
-                        <input type=file name=file id="file" class="button"
-                        onchange="preview(event)">
+                        <div class="upload">
+                            <input type=file name=file id="file" class="button"
+                            onchange="preview(event)">
+                        </div>
+                        
                         
                     </div>
                     <div class="secret-text-container form-input">
@@ -71,12 +74,18 @@
                     </div>
                     <div class="bloc-stego form-input">
                         <div class="in-out-img">
-                            {% if result_path %}
-                            <img src="../image_transform.jpg" alt="image stego" id="img-stego">
+                            {% if result_stego %}
+                            <img src="../static/img/{{result_stego}}" alt="image stego" id="img-stego">
+                            
                             {% else %}
-                            <img src="../static/img/image-1.png" alt="image stego" id="img-stego-default">
+                            <img src="../static/img/image-1.png" alt="image stego" class="input-default" id="img-stego-default">
                             {% endif %}
                         </div>
+                        {% if result_stego %}
+                        <div class="download">
+                            <a href="{{ url_for('download',result_stego=result_stego) }}">Télécharger</a>
+                        </div>
+                        {% endif %}
                         <div class="renisialiser">
                             <a href="" class="renisialiser">réinitialiser</a>
                         </div>
@@ -101,7 +110,10 @@
                         {% if psnr %}
                         <div class="evaluation">
                             <p>
-                            Le PSNR de cette image couverture est :<br> {{ psnr }}
+                                Le PSNR de l'image est:<br> {{ psnr }}
+                            </p>
+                            <p>
+                                Le MSE de l'image est:<br> {{ mse }}
                             </p>
                         </div>
                         {% endif %}

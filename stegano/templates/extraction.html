@@ -25,15 +25,15 @@
                     <label for="deux">Méthode Proposé</label>
                 </div>
                 
-                <span id="methode2-bit">
+                <span id="input-case">
 
-                    <input type="number" id="input-bit" name="methode2-bit" value="" required disabled>
+                    <input type="number" id="input-bit" name="input-case" value="" required disabled>
                     <label for="input-bit">
                         <span>Clé de cryptage</span>
                     </label>
 
                 </span>
-                <span id="methode2-bit">
+                <span id="input-case">
 
                     <input type="number" id="input-bit" name="cle_insertion" value="" required>
                     <label for="input-bit">
@@ -55,13 +55,13 @@
             </fieldset>
             
         </div>
-        <div class="bloc-image-cover form-input">
+        <div class="form-input">
 
             <div class="coverClass in-out-img">
                 {% if filename %}
-                    <img src="/stegano/{{filename}}" alt="image priview" id="cover">
+                    <img src="../static/img/{{filename}}" alt="image">
                 {% else%}
-                    <img src="/static/img/upload.png" alt="image priview" id="cover-default">
+                    <img src="../static/img/upload.png" alt="image par défaut" class="input-default" id="cover-default">
                 {% endif %}
             </div>
             <input type=file name=file id="file" class="button"
@@ -77,13 +77,16 @@
             <img src="../static/img/trajectory.png" alt="">
         </div>
         {% endif %}  
-        <div>
+        <div class="form-input">
             <div class="secret-message">
             {% if message_secret %}
                 <p>le message est :</p>
                 <p>{{message_secret}}</p>
             {% endif %}
             
+            </div>
+            <div class="renisialiser">
+                <a href="" class="renisialiser">réinitialiser</a>
             </div>
            
         </div>     

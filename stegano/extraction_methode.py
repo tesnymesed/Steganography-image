@@ -1,5 +1,6 @@
 import stegano.dissimulation, stegano.conversion, stegano.redimension, stegano.DCT_quantification
 from PIL import Image
+#import numpy
 
 def extraction_methode1(image_stego, taille_msg, canal):
 

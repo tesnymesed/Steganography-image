@@ -48,12 +48,14 @@ def decrypt(message,cle):
 
 
 def main():
-    message = 'BLIDA'
+    message = 'Les images vectorielles sont composées de formes géométriques qui vont pouvoir être décrites d’un point de vue mathématiques. Par exemple une droite sera définie par deux points, un cercle par un centre et un rayon. Le processeur est chargé de traduire ces formes par des informations interprétables par la carte graphique (voir figure I.2) [3].'
     cle = 5
 
     message_cry = crypt(message,cle)
-    message_fin = decrypt(message_cry,cle)
-    print(message_fin)
+    #message_fin = decrypt(message_cry,cle)
+    #print(message_cry)
+    message = "".join(message_cry)
+    print(str(message))
 
 
 if __name__ == "__main__":
