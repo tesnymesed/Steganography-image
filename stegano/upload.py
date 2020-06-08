@@ -54,8 +54,9 @@ def dissimulation():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print(filename)
             image_cover = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            image_width = image_cover.width 
-            image_height= image_cover.height
+            # image_width = image_cover.width 
+            # image_height= image_cover.height
+            image_cover = redimensioner2(image_cover,150,150)
             if methode == 2 :
 
                 #bit = int(random()*100)
