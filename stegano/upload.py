@@ -181,5 +181,5 @@ def detail():
 
 @app.route('/download/<result_stego>')
 def download(result_stego):
-    path = 'static\\img\\'+result_stego
+    path = os.path.join(app.config['UPLOAD_FOLDER'], result_stego)
     return send_file(path, as_attachment=True)
