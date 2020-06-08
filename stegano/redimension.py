@@ -3,8 +3,8 @@ import numpy
 
 #cette fonction permet de redimensioner l'image pour quelle soit divisible en blocs de 8*8
 def redimensioner(image):
-     image_width =image.width 
-     image_height=image.height 
+     image_width =150#image.width 
+     image_height=150#image.height 
      rest_division_width8= int(image_width%8)
      rest_division_height8 =int(image_height%8)
      print("reste de la division de la largeur par 8 = ",rest_division_width8)

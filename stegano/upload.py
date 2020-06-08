@@ -39,7 +39,6 @@ def dissimulation():
         file = request.files['file']
         message = " ce message est secret "
         message = request.form['text-secret']
-        longeur_message = len(message)
         print("le message est : "+ message)
         canal = int(request.form['canal'])
         methode = int(request.form['methode'])
@@ -59,14 +58,12 @@ def dissimulation():
             image_cover = redimensioner2(image_cover,150,150)
             if methode == 2 :
 
-                #bit = int(random()*100)
                 cle_cryptage = int(request.form['input-case'])
                 
                 # pylint: disable=too-many-function-args
                 image_stego, canal , cle_insertion , psnr , mse = dissimulation_methode2(image_cover, message, cle_cryptage,canal)  
                 #message_secret = stegano.extraction_methode.extraction_methode2(image_stego, cle_insertion, canal, cle_cryptage)
                 #print(message_secret)
-                print(longeur_message)
 
             else:
                 image_stego, canal , cle_insertion , psnr , mse = dissimulation_methode1(image_cover, message,canal)
@@ -80,7 +77,7 @@ def dissimulation():
             image_stego.save(os.path.join(app.config['UPLOAD_FOLDER'], result_stego), optimize=True, quality=100)
             print("it took  :"+ str(time.time() - start) + " seconds.")
 
-    return render_template('index.html', title="dissimulation", filename=filename, result_stego=result_stego , psnr=psnr, mse=mse, cle_insertion=cle_insertion, canal=canal, cle_cryptage=cle_cryptage)
+    return render_template('index.html', title="dissimulation", filename=filename, result_stego=result_stego , psnr=psnr, mse=mse, canal=canal, cle_cryptage=cle_cryptage, cle_insertion=cle_insertion)
 @app.route('/extraction', methods=['GET', 'POST'])
 def extraction():
     filename = None

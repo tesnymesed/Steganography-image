@@ -19,13 +19,13 @@
                         <fieldset>
                             <legend>Réglage</legend>
                             <div class="radio-methode radio-class">
-                                <input type="radio" name="methode" id="premiere" value="1" onclick="document.getElementById('input-bit').disabled = true">
+                                <input type="radio" name="methode" id="premiere" value="1" checked onclick="document.getElementById('input-bit').disabled = true">
                                 <label for="premiere">JPEG-JSTEG</label>
                                 <input type="radio" name="methode" id="deux" value="2" onclick="document.getElementById('input-bit').disabled = false">
                                 <label for="deux">Méthode Proposé par Chin-Chen Chang</label>
                             </div>
                             
-                            <span id="input-case">
+                            <span id="input-case" class="cryptage"> 
 
                                 <input type="number" id="input-bit" name="input-case" value="" required disabled>
                                 <label for="input-bit">

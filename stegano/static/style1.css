@@ -195,20 +195,20 @@
         }
         section.form-class #form .methode fieldset{
             display: flex;
-           
             justify-content:center;
             border: none;
             border-bottom: 5px solid green;
         }
         section.form-class #form .methode fieldset .radio-class ,
         section.form-class #form .methode fieldset .filtre{
+            
             padding-top: 15px;
             font-size: 15px;
             width: 400px;
             margin-left: 0;
             /*border: 5px solid rgb(3, 51, 3);*/
             padding-bottom: 15px;
-            
+            display: none;
         }
         section.form-class #form .methode fieldset .radio-canal input{
             margin-left: 6px;
@@ -216,8 +216,9 @@
 
         section.form-class #form .methode fieldset #input-case{
             margin: 0 100px 0 100px;
-            
-           
+        }
+        section.form-class #form .methode fieldset .cryptage{
+            display: none;
         }
         textarea {
             resize: none;
@@ -229,6 +230,7 @@
             font-weight: bolder;
         }
         textarea:focus{
+            border: none;
             border: 3px green solid;
             /*background-color: white;*/
             /*box-shadow: 0 0 20px green;*/
