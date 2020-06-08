@@ -11,7 +11,7 @@ import time
 from stegano.redimension import redimensioner2, redimensioner
 from random import random
 
-UPLOAD_FOLDER = 'stegano/static/img'
+UPLOAD_FOLDER = ''#stegano/static/img'
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg','png','gif'}
 app.config['UPLOAD_FOLDER']= UPLOAD_FOLDER
 
