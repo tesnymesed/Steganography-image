@@ -11,7 +11,7 @@ import time
 from stegano.redimension import redimensioner2, redimensioner
 from random import random
 
-UPLOAD_FOLDER = ''#stegano/static/img'
+UPLOAD_FOLDER = 'static/img'#stegano/
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg','png','gif'}
 app.config['UPLOAD_FOLDER']= UPLOAD_FOLDER
 
@@ -53,7 +53,7 @@ def dissimulation():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print(filename)
-            image_cover = Image.open(UPLOAD_FOLDER+"\\"+filename)
+            image_cover = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             image_width = image_cover.width 
             image_height= image_cover.height
             if methode == 2 :
@@ -76,7 +76,7 @@ def dissimulation():
             print("cle d'insertion ="+str(cle_insertion))
             result_stego = filename+'_stego.png'
             #image_stego = redimensioner2(image_stego, image_width, image_height)
-            image_stego.save(UPLOAD_FOLDER+"\\"+ result_stego, optimize=True, quality=100)
+            image_stego.save(os.path.join(app.config['UPLOAD_FOLDER'], result_stego), optimize=True, quality=100)
             print("it took  :"+ str(time.time() - start) + " seconds.")
 
     return render_template('index.html', title="dissimulation", filename=filename, result_stego=result_stego , psnr=psnr, mse=mse, cle_insertion=cle_insertion, canal=canal, cle_cryptage=cle_cryptage)
@@ -108,7 +108,7 @@ def extraction():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-            image_stego =Image.open(UPLOAD_FOLDER+'\\'+filename)
+            image_stego =Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print(filename)
             print(os.getcwd())
             if methode == 2 :
