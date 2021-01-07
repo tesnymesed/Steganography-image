@@ -204,11 +204,10 @@
             
             padding-top: 15px;
             font-size: 15px;
-            width: 400px;
+            width: 880px;
             margin-left: 0;
             /*border: 5px solid rgb(3, 51, 3);*/
             padding-bottom: 15px;
-            display: none;
         }
         section.form-class #form .methode fieldset .radio-canal input{
             margin-left: 6px;
@@ -218,7 +217,7 @@
             margin: 0 100px 0 100px;
         }
         section.form-class #form .methode fieldset .cryptage{
-            display: none;
+            
         }
         textarea {
             resize: none;

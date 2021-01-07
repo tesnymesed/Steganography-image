@@ -7,4 +7,3 @@ def calculate_psnr(img1, img2, max_value=255):
     if mse == 0:
         return 100,0
     return 20 * np.log10(max_value / (np.sqrt(mse))) , mse
-

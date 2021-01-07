@@ -12,7 +12,7 @@ from stegano.redimension import redimensioner2, redimensioner
 from random import random
 
 UPLOAD_FOLDER = 'stegano/static/img'
-ALLOWED_EXTENSIONS = {'jpg', 'jpeg','png','gif'}
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg','png','gif','bmp'}
 app.config['UPLOAD_FOLDER']= UPLOAD_FOLDER
 
 def allowed_file(filename):
@@ -28,6 +28,7 @@ def dissimulation():
     cle_cryptage = None
     cle_insertion = None
     canal = None
+    canal_name = None
     result_stego = None
     mse = None
     if request.method == 'POST':
@@ -55,7 +56,7 @@ def dissimulation():
             image_cover = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # image_width = image_cover.width 
             # image_height= image_cover.height
-            image_cover = redimensioner2(image_cover,150,150)
+            #image_cover = redimensioner2(image_cover,150,150)
             if methode == 2 :
 
                 cle_cryptage = int(request.form['input-case'])
@@ -67,17 +68,26 @@ def dissimulation():
 
             else:
                 image_stego, canal , cle_insertion , psnr , mse = dissimulation_methode1(image_cover, message,canal)
-                
+            
+
+            if canal == 0: 
+                canal_name = 'Y'
+            elif canal == 1:  
+                canal_name ='Cb'
+            else :
+                canal_name ='Cr'
+
+
             #return redirect(url_for('dissimulation'))
             print('clé cryptage = '+str(cle_cryptage))
-            print('canal = '+str(canal))
+            print('canal = '+str(canal_name))
             print("cle d'insertion ="+str(cle_insertion))
             result_stego = filename+'_stego.png'
             #image_stego = redimensioner2(image_stego, image_width, image_height)
             image_stego.save(os.path.join(app.config['UPLOAD_FOLDER'], result_stego), optimize=True, quality=100)
             print("it took  :"+ str(time.time() - start) + " seconds.")
 
-    return render_template('index.html', title="dissimulation", filename=filename, result_stego=result_stego , psnr=psnr, mse=mse, canal=canal, cle_cryptage=cle_cryptage, cle_insertion=cle_insertion)
+    return render_template('index.html', title="dissimulation", filename=filename, result_stego=result_stego , psnr=psnr, mse=mse, canal_name=canal_name, cle_cryptage=cle_cryptage, cle_insertion=cle_insertion)
 @app.route('/extraction', methods=['GET', 'POST'])
 def extraction():
     filename = None

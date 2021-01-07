@@ -4,7 +4,7 @@
 {% block hero %}
     <div class="hero">
         <h1>Dissimulation</h1>
-        <h3>"Inserer un message secrèt a l'intérieur d'une Image pour que personne ne l'aperçoit et envoyer le message sans risque" .</h3>
+        <h3>"Dissimuler un message secret dans une Image en respectant les critères " .</h3>
     </div>
     
 {% endblock %}
@@ -20,9 +20,9 @@
                             <legend>Réglage</legend>
                             <div class="radio-methode radio-class">
                                 <input type="radio" name="methode" id="premiere" value="1" checked onclick="document.getElementById('input-bit').disabled = true">
-                                <label for="premiere">JPEG-JSTEG</label>
+                                <label for="premiere">Méthose basé sur la stéganographie JSTEG</label>
                                 <input type="radio" name="methode" id="deux" value="2" onclick="document.getElementById('input-bit').disabled = false">
-                                <label for="deux">Méthode Proposé par Chin-Chen Chang</label>
+                                <label for="deux">Méthode inspirée du travail de chang et al</label>
                             </div>
                             
                             <span id="input-case" class="cryptage"> 
@@ -68,7 +68,7 @@
                     </div>
                     <div class="secret-text-container form-input">
                         <label>Le message à cacher</label>
-                        <textarea id="text-secret" rows="20" cols="20" name="text-secret" placeholder=" Entrer le Message a caché "></textarea>
+                        <textarea id="text-secret" rows="20" cols="20" name="text-secret" placeholder=" Entrer le Message à dissimuler "></textarea>
                         <br>
                         <input type=submit value=Dissimuler class="button">
                     </div>
@@ -100,10 +100,10 @@
                     <p>La clé du cryptage est : {{cle_cryptage}}</p>
                     {% endif %}
                     {% if cle_insertion %}
-                    <p>La clé d'insertion est : {{cle_insertion}}</p>
+                    <p>La clé d'extraction est : {{cle_insertion}}</p>
                     {% endif %}
-                    {% if canal %}
-                    <p>Le canal est : {{canal}}</p>
+                    {% if canal_name %}
+                    <p>Le canal est : {{canal_name}}</p>
                     {% endif %}
                 </div>
                

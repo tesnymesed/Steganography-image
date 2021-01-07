@@ -20,9 +20,9 @@
                 <legend>Réglage</legend>
                 <div class="radio-methode radio-class">
                     <input type="radio" name="methode" id="premiere" value="1" checked onclick="document.getElementById('input-bit').disabled = true">
-                    <label for="premiere">JPEG-JSTEG</label>
+                    <label for="premiere">Méthose basé sur la stéganographie JSTEG</label>
                     <input type="radio" name="methode" id="deux" value="2" onclick="document.getElementById('input-bit').disabled = false">
-                    <label for="deux">Méthode Proposé</label>
+                    <label for="deux">Méthode inspirée du travail de chang et al</label>
                 </div>
                 
                 <span id="input-case" class="cryptage">
@@ -37,7 +37,7 @@
 
                     <input type="number" id="input-bit" name="cle_insertion" value="" required>
                     <label for="input-bit">
-                        <span>Clé d'insertion</span>
+                        <span>Clé d'extraction</span>
                     </label>
 
                 </span>
@@ -69,7 +69,7 @@
             
         </div>
         <div class="subbmit">
-            <input type=submit value=extraction class="button"> 
+            <input type=submit value=Extraction class="button"> 
         </div> 
         
         {% if message_secret %}
