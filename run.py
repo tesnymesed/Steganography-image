@@ -5,6 +5,6 @@ import stegano.redimension, stegano.conversion, stegano.DCT_quantification,stega
 
 if __name__ == "__main__":
    
-   app.run(debug=False)
+   app.run()
   
 
